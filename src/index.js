@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { NavBar, Home, Dashboard } from './components';
+import { NavBar, Home, Dashboard, AddForm } from './components';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
@@ -16,6 +16,9 @@ ReactDOM.render(
         </Route>
         <Route path="/dashboard" component={Dashboard}>
           <Dashboard />
+        </Route>
+        <Route path="/add" component={AddForm}>
+          <AddForm />
         </Route>
       </Switch>
     </Router>
