@@ -6,35 +6,35 @@ function AddForm() {
     return (
         <Container>
             <Row>
-                <Col>
+                <Col sm={6}>
                     <Card>
                         <Card.Body>
                             <Card.Text>+ Add Event</Card.Text>
                             <Form>
-                                <Form.Row style={{ marginBottom: '10px' }}>
-                                    <Col>
+                                <Form.Row>
+                                    <Col style={{ marginBottom: '10px' }} sm={6}>
                                         <Form.Control placeholder="Title" />
                                     </Col>
-                                    <Col>
+                                    <Col style={{ marginBottom: '10px' }} sm={6}>
                                         <Form.Control placeholder="Location" />
                                     </Col>
                                 </Form.Row>
-                                <Form.Row style={{ marginBottom: '10px' }}>
-                                    <Col>
+                                <Form.Row>
+                                    <Col style={{ marginBottom: '10px' }} sm={6}>
                                         <Form.Control placeholder="Participant" />
                                     </Col>
-                                    <Col>
+                                    <Col style={{ marginBottom: '10px' }} sm={6}>
                                         <Form.Control placeholder="Date" />
                                     </Col>
                                 </Form.Row>
-                                <Form.Row style={{ marginBottom: '10px' }}>
-                                    <Col>
+                                <Form.Row>
+                                    <Col style={{ marginBottom: '10px' }}>
                                         <Form.Control as="textarea" rows="3" placeholder="Note" />
                                     </Col>
                                 </Form.Row>
-                                <Form.Row style={{ marginBottom: '10px' }}>
+                                <Form.Row>
                                     <Col>
-                                        <Form.File />
+                                        <Form.File style={{ marginBottom: '10px' }} />
                                     </Col>
                                 </Form.Row>
                                 <Form.Row style={{ marginBottom: '10px' }}>
@@ -47,7 +47,7 @@ function AddForm() {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col><img style={{ width: '100%' }} src={require('../../images/meeting.png')} /></Col>
+                <Col sm={6}><img style={{ width: '100%' }} src={require('../../images/meeting.png')} /></Col>
             </Row>
         </Container>
     );
