@@ -1,6 +1,4 @@
- TOKOFLIX
-
-TOKOFLIX Aplication Using JSON APIS In Server Side
+Nash_test Application Using ReactJS in frontend and using API with JSON in server side
 
 
 ## HOW TO USE
