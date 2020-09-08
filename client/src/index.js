@@ -15,15 +15,9 @@ ReactDOM.render(
     <Router>
       <NavBar /><br />
       <Switch>
-        <Route path="/home" component={Home}>
-          <Home />
-        </Route>
-        <Route path="/dashboard" component={Dashboard}>
-          <Dashboard />
-        </Route>
-        <Route path="/add" component={AddForm}>
-          <AddForm />
-        </Route>
+        <Route path="/home" component={Home} />
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/add" component={AddForm} />
       </Switch>
     </Router>
   </Provider>,

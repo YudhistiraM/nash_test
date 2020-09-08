@@ -12,7 +12,7 @@ class Dashboard extends Component {
     }
 
     render() {
-        const { data, actions } = this.props
+        const { data } = this.props
         return (
             <Container>
                 <Form>

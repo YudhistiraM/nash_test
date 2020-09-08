@@ -8,7 +8,7 @@ export default class ParticipantsTable extends Component {
         let filterData = data
         let participantList = filterData.map((data, index) => {
             return (
-                <li>{data}</li>
+                <li key={index}>{data}</li>
             )
         })
         return (

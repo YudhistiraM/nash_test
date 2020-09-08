@@ -10,7 +10,7 @@ export default class TableEvent extends Component {
         let filterData = data
         let dataNodes = filterData.map((data, index) => {
             return (
-                <tr>
+                <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{data.title}</td>
                     <td>{data.location}</td>

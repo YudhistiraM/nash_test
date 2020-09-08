@@ -47,7 +47,7 @@ function AddForm() {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col sm={6}><img style={{ width: '100%' }} src={require('../../images/meeting.png')} /></Col>
+                <Col sm={6}><img style={{ width: '100%' }} src={require('../../images/meeting.png')} alt="Meeting" /></Col>
             </Row>
         </Container>
     );
