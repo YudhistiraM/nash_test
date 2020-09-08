@@ -1,60 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './tableEvent.css';
 import { Table } from 'react-bootstrap';
+import ParticipantsTable from '../participantsTable/participantsTable.js';
 
-function TableEvent() {
-    return (
-        <Table striped bordered hover>
-            <thead>
+export default class TableEvent extends Component {
+
+    render() {
+        const { data } = this.props
+        let filterData = data
+        let dataNodes = filterData.map((data, index) => {
+            return (
                 <tr>
-                    <th>No</th>
-                    <th>Title</th>
-                    <th>Location</th>
-                    <th>Date</th>
-                    <th>Participant</th>
-                    <th>Note</th>
+                    <td>{index + 1}</td>
+                    <td>{data.title}</td>
+                    <td>{data.location}</td>
+                    <td>{data.date}</td>
+                    <td><ParticipantsTable data={data.participants} /></td>
+                    <td>{data.note}</td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Meeting With CEO</td>
-                    <td>PASANGAN TIMUR, JAKARTA</td>
-                    <td>17 Agustus 2020</td>
-                    <td>
-                        <ul>
-                            <li>Rio Jandi</li>
-                            <li>Rio Jandi</li>
-                            <li>Rio Jandi</li>
-                        </ul>
-                    </td>
-                    <td>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-                        </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Meeting With CEO</td>
-                    <td>PASANGAN TIMUR, JAKARTA</td>
-                    <td>17 Agustus 2020</td>
-                    <td>
-                        <ul>
-                            <li>Rio Jandi</li>
-                            <li>Rio Jandi</li>
-                            <li>Rio Jandi</li>
-                        </ul>
-                    </td>
-                    <td>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-                        </td>
-                </tr>
-            </tbody>
-        </Table>
-    );
+            )
+        })
+        return (
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Title</th>
+                        <th>Location</th>
+                        <th>Date</th>
+                        <th>Participant</th>
+                        <th>Note</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {dataNodes}
+                </tbody>
+            </Table>
+        );
+    }
 }
-
-export default TableEvent;

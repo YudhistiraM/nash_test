@@ -5,11 +5,15 @@ import { NavBar, Home, Dashboard, AddForm } from './components';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import configureStore from './store';
+
+const store = configureStore();
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <Router>
-      <NavBar /><br/>
+      <NavBar /><br />
       <Switch>
         <Route path="/home" component={Home}>
           <Home />
@@ -22,7 +26,7 @@ ReactDOM.render(
         </Route>
       </Switch>
     </Router>
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
