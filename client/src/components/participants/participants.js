@@ -8,7 +8,7 @@ export default class Participants extends Component {
         let filterData = data;
         let participantList = filterData.map((data, index) => {
             return (
-                <Card.Text style={{ margin: '0 auto' }}><img src={require('../../images/person.png')} alt="Meeting" />{data}</Card.Text>
+                <Card.Text key={index} style={{ margin: '0 auto' }}><img src={require('../../images/person.png')} alt="Meeting" />{data}</Card.Text>
             )
         })
         return (
