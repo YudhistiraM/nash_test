@@ -32,7 +32,7 @@ router.post('/', function (req, res, next) {
       title: req.body.title,
       location: req.body.location,
       date: req.body.date,
-      participants: req.body.participants.toString().split(','),
+      participants: req.body.participants.split(','),
       note: req.body.note,
       img: null
     }
@@ -40,7 +40,8 @@ router.post('/', function (req, res, next) {
     writeFile(input);
     res.json({
       success: true,
-      message: `Data has been added succesfully`
+      message: `Data has been added succesfully`,
+      data: value
     })
   } catch (err) {
     res.json({
