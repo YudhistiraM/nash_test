@@ -95,6 +95,7 @@ class AddForm extends Component {
                                                 onChange={this.handleParticipantsChange.bind(this)}
                                                 required
                                             />
+                                            <p style={{ fontSize: '12px', color: 'red' }}><i>Format names (name1, name2, name3,...)</i></p>
                                         </Col>
                                         <Col style={{ marginBottom: '10px' }} sm={6}>
                                             <Form.Control
