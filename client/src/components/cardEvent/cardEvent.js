@@ -4,7 +4,7 @@ import './cardEvent.css';
 import Participants from '../participants/participants.js'
 
 export default class CardEvent extends Component {
-    
+
     render() {
         const { data } = this.props;
         return (
@@ -14,9 +14,9 @@ export default class CardEvent extends Component {
                     <Card.Text><img src={require('../../images/pin.png')} alt="pin" /> <strong>{data.location}</strong></Card.Text>
                     <Card.Title style={{ fontSize: '30px' }}>{data.title}</Card.Title>
                     <Card.Text>{data.date}</Card.Text>
-                    <hr />
+                    <hr style={{marginBottom: '0'}} />
                     <Participants data={data.participants} />
-                    <hr />
+                    <hr style={{ clear: 'both' }} />
                     <Card.Text style={{ margin: '0' }}><strong>Note:</strong></Card.Text>
                     <Card.Text>{data.note}</Card.Text>
                 </Card.Body>
