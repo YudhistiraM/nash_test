@@ -9,7 +9,7 @@ export default class CardEvent extends Component {
         const { data } = this.props;
         return (
             <Card style={{ maxWidth: '350px', margin: '15px auto' }}>
-                <Card.Img variant="top" src={require('../../images/meeting.png')} />
+                <Card.Img style={{ maxHeight: '250px' }} variant="top" src={data.img} />
                 <Card.Body>
                     <Card.Text><img src={require('../../images/pin.png')} alt="pin" /> <strong>{data.location}</strong></Card.Text>
                     <Card.Title style={{ fontSize: '30px' }}>{data.title}</Card.Title>

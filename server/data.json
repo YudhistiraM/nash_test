@@ -10,7 +10,7 @@
          "Nurviana"
       ],
       "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "img": null
+      "img": "http://localhost:3005/image/img-1599792522504.png"
    },
    {
       "id": 1,
@@ -23,7 +23,7 @@
          "Reza "
       ],
       "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "img": null
+      "img": "http://localhost:3005/image/img-1599792522504.png"
    },
    {
       "id": 3,
@@ -36,6 +36,6 @@
          "Reza "
       ],
       "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "img": null
+      "img": "http://localhost:3005/image/img-1599792522504.png"
    }
 ]

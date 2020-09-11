@@ -20,14 +20,18 @@ export function loadData() {
     }
 }
 
-export function saveData(data) {
+export function saveData(formData) {
     return dispatch => {
-        axios.post(SERVER_URL, data)
+        axios.post(SERVER_URL, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }
+        })
             .then((err, res) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log(res.body.data);
+                    console.log(res.body.formData);
                 }
             })
     }

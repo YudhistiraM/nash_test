@@ -3,10 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var multer = require('multer');
+var storage = multer.diskStorage({
+  destination: __dirname + '/routes/uploads/images',
+  filename: function (req, file, cb) {
+    console.log(file);
+    cb(null, file.fieldname + '-' + Date.now() + '.' + file.mimetype.split('/')[1])
+  }
+})
+var upload = multer({ storage: storage });
 
-var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/index')(upload);
 var usersRouter = require('./routes/users');
-
 let cors = require('cors');
 
 var app = express();

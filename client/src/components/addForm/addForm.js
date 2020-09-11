@@ -14,6 +14,7 @@ class AddForm extends Component {
             participants: '',
             date: '',
             note: '',
+            file: null,
             showModal: false
         }
     }
@@ -38,22 +39,25 @@ class AddForm extends Component {
         this.setState({ note: e.target.value })
     }
 
+    handleImgChange(e) {
+        this.setState({ file: e.target.files[0] })
+    }
+
     handleClosedModal(e) {
         this.setState({ showModal: false })
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        const newData = {
-            id: Date.now(),
-            title: this.state.title,
-            location: this.state.location,
-            participants: this.state.participants,
-            date: this.state.date,
-            note: this.state.note,
-            img: null
-        };
-        this.props.actions.saveData(newData)
+        let formData = new FormData();
+        formData.append("id", Date.now());
+        formData.append("title", this.state.title);
+        formData.append("location", this.state.location);
+        formData.append("participants", this.state.participants);
+        formData.append("date", this.state.date);
+        formData.append("note", this.state.note);
+        formData.append("img", this.state.file);
+        this.props.actions.saveData(formData)
         this.setState({ title: '', location: '', participants: '', date: '', note: '' })
         this.setState({ showModal: true })
     }
@@ -66,7 +70,7 @@ class AddForm extends Component {
                     <Col sm={6}>
                         <Card>
                             <Card.Body>
-                                <Card.Text>+ Add Event</Card.Text>
+                                <Card.Text>+ Add Event {this.state.img}</Card.Text>
                                 <Form onSubmit={this.handleSubmit.bind(this)}>
                                     <Form.Row>
                                         <Col style={{ marginBottom: '10px' }} sm={6}>
@@ -121,7 +125,11 @@ class AddForm extends Component {
                                     </Form.Row>
                                     <Form.Row>
                                         <Col style={{ marginBottom: '10px' }}>
-                                            <Form.File />
+                                            <Form.File
+                                                name="img"
+                                                onChange={this.handleImgChange.bind(this)}
+                                                required
+                                            />
                                         </Col>
                                     </Form.Row>
                                     <Form.Row style={{ marginBottom: '10px' }}>
