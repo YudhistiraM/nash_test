@@ -37,7 +37,7 @@ class Dashboard extends Component {
 
     getDataBasedOnPage(data) {
         let result = this.getFilterData(data).slice(5 * (this.state.currentPage - 1))
-        if(result.length < 5){
+        if (result.length < 5) {
             return result
         } else {
             return result.slice(0, 5)
@@ -68,10 +68,12 @@ class Dashboard extends Component {
                         </Col>
                     </Form.Row>
                 </Form><br />
-                <TableEvent data={this.getDataBasedOnPage(data)} currentPage={this.state.currentPage} />
+                <div style={{ width: '100%', overflowX: 'scroll' }}>
+                    <TableEvent data={this.getDataBasedOnPage(data)} currentPage={this.state.currentPage} />
+                </div>
                 <Paginate numbersOfPage={this.getNumbersOfPage(data)} onChangePage={this.handleChangePage.bind(this)} />
                 <br /><br /><br />
-            </Container>
+            </Container >
         );
     }
 }
