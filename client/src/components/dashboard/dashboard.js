@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './dashboard.css';
-import { Container, Form, Col, Pagination, Button } from 'react-bootstrap';
+import { Container, Form, Col } from 'react-bootstrap';
 import TableEvent from '../tableEvent/tableEvent.js'
+import Paginate from '../paginate/paginate.js'
 import * as redux from 'redux';
 import { connect } from 'react-redux';
 import * as AppActions from '../../action';
@@ -11,7 +12,9 @@ class Dashboard extends Component {
         super(props, context)
         this.state = {
             key: '',
-            events: []
+            events: [],
+            currentPage: 1,
+            numbersOfPage: 0
         }
     }
 
@@ -21,9 +24,10 @@ class Dashboard extends Component {
 
     handleKeyChange(e) {
         this.setState({ key: e.target.value })
+        this.setState({ currentPage: 1 })
     }
 
-    getData(data) {
+    getFilterData(data) {
         return data.filter(arr =>
             arr.title.toLowerCase().includes(this.state.key.toLowerCase()) ||
             arr.location.toLowerCase().includes(this.state.key.toLowerCase()) ||
@@ -31,8 +35,25 @@ class Dashboard extends Component {
             arr.date.toLowerCase().includes(this.state.key.toLowerCase()))
     }
 
+    getDataBasedOnPage(data) {
+        let result = this.getFilterData(data).slice(5 * (this.state.currentPage - 1))
+        if(result.length < 5){
+            return result
+        } else {
+            return result.slice(0, 5)
+        }
+    }
+
+    getNumbersOfPage(data) {
+        return Array.from(Array(Math.ceil(this.getFilterData(data).length / 5)).keys())
+    }
+
+    handleChangePage(page) {
+        this.setState({ currentPage: page });
+    }
+
     render() {
-        const { data, actions } = this.props
+        const { data } = this.props
         return (
             <Container>
                 <Form>
@@ -47,12 +68,9 @@ class Dashboard extends Component {
                         </Col>
                     </Form.Row>
                 </Form><br />
-                <TableEvent data={this.getData(data)} />
-                <Pagination style={{ margin: '0 auto', width: 'fit-content' }}>
-                    <Pagination.Prev />
-                    <Pagination.Item active>{1}</Pagination.Item>
-                    <Pagination.Next />
-                </Pagination>
+                <TableEvent data={this.getDataBasedOnPage(data)} currentPage={this.state.currentPage} />
+                <Paginate numbersOfPage={this.getNumbersOfPage(data)} onChangePage={this.handleChangePage.bind(this)} />
+                <br /><br /><br />
             </Container>
         );
     }

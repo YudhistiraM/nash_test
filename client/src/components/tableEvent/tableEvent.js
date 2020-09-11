@@ -6,12 +6,12 @@ import ParticipantsTable from '../participantsTable/participantsTable.js';
 export default class TableEvent extends Component {
 
     render() {
-        const { data } = this.props
+        const { data, currentPage } = this.props
         let filterData = data
         let dataNodes = filterData.map((data, index) => {
             return (
                 <tr key={index}>
-                    <td>{index + 1}</td>
+                    <td>{(index + 1) + ((currentPage - 1) * 5)}</td>
                     <td>{data.title}</td>
                     <td>{data.location}</td>
                     <td>{data.date}</td>
