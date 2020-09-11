@@ -17,16 +17,24 @@ class Paginate extends Component {
     handleSwitchPage(selectedPage) {
         this.setState({ currentPage: selectedPage })
         this.props.onChangePage(selectedPage)
+        this.scrollToTop()
     }
 
     handleNextPage() {
         this.setState({ currentPage: this.state.currentPage + 1 })
         this.props.onChangePage(this.state.currentPage + 1)
+        this.scrollToTop()
     }
 
     handlePrevPage() {
         this.setState({ currentPage: this.state.currentPage - 1 })
         this.props.onChangePage(this.state.currentPage - 1)
+        this.scrollToTop()
+    }
+
+    scrollToTop() {
+        document.body.scrollTop = 0 // For Safari
+        document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
     }
 
     render() {
