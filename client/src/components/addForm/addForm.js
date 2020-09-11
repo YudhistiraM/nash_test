@@ -67,8 +67,8 @@ class AddForm extends Component {
         return (
             <Container>
                 <Row>
-                    <Col sm={6}>
-                        <Card>
+                    <Col sm={6} style={{ padding: '0, 15px'}}>
+                        <Card style={{ height: '100%' }}>
                             <Card.Body>
                                 <Card.Text>+ Add Event {this.state.img}</Card.Text>
                                 <Form onSubmit={this.handleSubmit.bind(this)}>
@@ -146,7 +146,7 @@ class AddForm extends Component {
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col sm={6}><img style={{ width: '100%' }} src={require('../../images/meeting.png')} alt="Meeting" /></Col>
+                    <Col sm={6}><img style={{ width: '100%', height: '100%' }} src={require('../../images/meeting.png')} alt="Meeting" /></Col>
                 </Row>
                 <Modal show={this.state.showModal}>
                     <Modal.Header closeButton>
