@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './addForm.css';
-import { Container, Form, Col, Row, Card, Button, Modal } from 'react-bootstrap';
+import { Container, Form, Col, Row, Card, Button, Modal, Alert } from 'react-bootstrap';
 import * as redux from 'redux';
 import { connect } from 'react-redux';
 import * as AppActions from '../../action';
@@ -15,7 +15,8 @@ class AddForm extends Component {
             date: '',
             note: '',
             file: null,
-            showModal: false
+            showModal: false,
+            showNoteAlert: false
         }
     }
 
@@ -47,27 +48,43 @@ class AddForm extends Component {
         this.setState({ showModal: false })
     }
 
+    noteCharacterValidate() {
+        this.setState({ showNoteAlert: this.state.note.length <= 50 })
+        return this.state.note.length <= 50
+    }
+
     handleSubmit(e) {
-        e.preventDefault();
-        let formData = new FormData();
-        formData.append("id", Date.now());
-        formData.append("title", this.state.title);
-        formData.append("location", this.state.location);
-        formData.append("participants", this.state.participants);
-        formData.append("date", this.state.date);
-        formData.append("note", this.state.note);
-        formData.append("img", this.state.file);
-        this.props.actions.saveData(formData)
-        this.setState({ title: '', location: '', participants: '', date: '', note: '' })
-        this.setState({ showModal: true })
+        e.preventDefault()
+        if (!this.noteCharacterValidate()) {
+            let formData = new FormData()
+            formData.append("id", Date.now())
+            formData.append("title", this.state.title)
+            formData.append("location", this.state.location)
+            formData.append("participants", this.state.participants)
+            formData.append("date", this.state.date);
+            formData.append("note", this.state.note);
+            formData.append("img", this.state.file);
+            this.props.actions.saveData(formData)
+            this.setState({ title: '', location: '', participants: '', date: '', note: '' })
+            this.setState({ showModal: true })
+        }
     }
 
 
     render() {
+        let noteAlert = this.state.showNoteAlert ? [
+            <Alert
+                key="1"
+                style={{ height: '30px', padding: '5px', fontSize: '12px' }}
+                variant="danger"
+            >
+                <strong>Note</strong> should be more than 50 character !
+            </Alert>
+        ] : [];
         return (
             <Container>
                 <Row>
-                    <Col sm={6} style={{ padding: '0, 15px'}}>
+                    <Col sm={6} style={{ padding: '0, 15px' }}>
                         <Card style={{ height: '100%' }}>
                             <Card.Body>
                                 <Card.Text>+ Add Event {this.state.img}</Card.Text>
@@ -114,6 +131,7 @@ class AddForm extends Component {
                                     <Form.Row>
                                         <Col style={{ marginBottom: '10px' }}>
                                             <Form.Control
+                                                style={{ marginBottom: '5px' }}
                                                 as="textarea"
                                                 rows="3"
                                                 placeholder="Note"
@@ -121,6 +139,7 @@ class AddForm extends Component {
                                                 onChange={this.handleNoteChange.bind(this)}
                                                 required
                                             />
+                                            {noteAlert}
                                         </Col>
                                     </Form.Row>
                                     <Form.Row>
