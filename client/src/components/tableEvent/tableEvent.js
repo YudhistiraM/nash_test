@@ -8,7 +8,7 @@ export default class TableEvent extends Component {
     render() {
         const { data, currentPage } = this.props
         let filterData = data
-        let dataNodes = filterData.map((data, index) => {
+        let dataNodes = filterData.reverse().map((data, index) => {
             return (
                 <tr key={index}>
                     <td>{(index + 1) + ((currentPage - 1) * 5)}</td>

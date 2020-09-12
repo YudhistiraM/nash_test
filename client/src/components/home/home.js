@@ -14,7 +14,7 @@ class Home extends Component {
     render() {
         const { data, actions } = this.props
         let filterData = data
-        let dataNodes = filterData.map((data, index) => {
+        let dataNodes = filterData.reverse().map((data, index) => {
             return (
                 <CardEvent key={index} data={data} {...actions} />
             )
