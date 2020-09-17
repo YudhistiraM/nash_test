@@ -18,8 +18,12 @@ ReactDOM.render(
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/add" component={AddForm} />
+        <Route path="/dashboard" component={Dashboard}>
+          <Dashboard />
+        </Route>
+        <Route path="/add" component={AddForm}>
+          <AddForm />
+        </Route>
       </Switch>
     </Router>
   </Provider>,
